@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="LOGO-2.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/home.css">
+    <title>CACE</title>
+
+</head>
+<body>
+    <header>
+        <h1>CACE</h1>
+    </header>
+    <nav>
+        <a onclick="showPage('home')">Produtividades</a>
+        <a onclick="showPage('about')">Robos</a>
+        <a onclick="showPage('contact')">Contato</a>
+    </nav>
+    <div class="container" id="content">
+        <h2>Bem-vindo</h2>
+        <p>Bem-vindo ao site CACE. Use a navegação acima para explorar as diferentes seções.</p>
+    </div>
+    <footer>
+        &copy; 2024 Seu Site. Todos os direitos reservados.
+    </footer>
+    <script>
+        function showPage(page) {
+            let content = document.getElementById('content');
+            if (page === 'home') {
+                content.innerHTML = `
+                    <h2>Produtividades</h2>
+                    <p>Esta página contém botões para executar automações de produtividade.</p>
+                    <div class="button-container">
+                        <button onclick="redirectTo('pages/graficos.html')">PRODUTIVIDADE</button>
+                        <button onclick="redirectTo('pages/produtividade.html')">null</button>
+                        <button onclick="redirectTo('pages/serventias.html')">SERVENTIAS</button>
+                    </div>
+                `;
+            } else if (page === 'about') {
+                content.innerHTML = `
+                    <h2>Robos</h2>
+                    <p>Esta página contém informações sobre robôs e automações de robôs.</p>
+                    <div class="button-container">
+                        <button onclick="automacao1()">Robo Devolução</button>
+                        <button onclick="automacao2()">Robo Produtividade (PROJUD)</button>
+                        <button onclick="automacao3()">Robo Varredura </button>
+                    </div>
+                `;
+            } else if (page === 'services') {
+                content.innerHTML = `
+                    <h2>Serviços</h2>
+                    <p>Detalhes sobre os serviços oferecidos.</p>
+                `;
+            } else if (page === 'contact') {
+                content.innerHTML = `
+                    <h2>Contato</h2>
+                    <p>Formas de entrar em contato conosco.</p>
+                `;
+            }
+        }
+
+
+
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+
+    </script>
+</body>
+</html>

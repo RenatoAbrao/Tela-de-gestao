@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/serventia.css">
+    <title>Serventias e Comarcas</title>
+</head>
+<body>
+    <header>
+        <h1>Serventias e Comarcas</h1>
+        <nav>
+            <a href="#individualChart">Gráfico Individual</a>
+            <a href="#generalChart">Gráfico Geral</a>
+           
+                <button onclick="goHome()">Voltar para Home</button>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="chart-container">
+            <h2>Tipos de Serventias</h2>
+            <canvas id="serventiasChart"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <h2>Tipos de Comarcas</h2>
+            <canvas id="comarcasChart"></canvas>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Página de Serventias e Comarcas. Todos os direitos reservados.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const serventiasCtx = document.getElementById('serventiasChart').getContext('2d');
+        const comarcasCtx = document.getElementById('comarcasChart').getContext('2d');
+
+        // Dados para o gráfico de serventias
+        const serventiasLabels = Array.from({ length: 30 }, (_, i) => `Serventia ${i + 1}`);
+        const serventiasData = {
+            labels: serventiasLabels,
+            datasets: [{
+                label: 'Quantidade de Serventias',
+                data: Array.from({ length: 30 }, () => Math.floor(Math.random() * 100) + 1),
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Dados para o gráfico de comarcas
+        const comarcasLabels = Array.from({ length: 30 }, (_, i) => `Comarca ${i + 1}`);
+        const comarcasData = {
+            labels: comarcasLabels,
+            datasets: [{
+                label: 'Quantidade de Comarcas',
+                data: Array.from({ length: 30 }, () => Math.floor(Math.random() * 100) + 1),
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Configurações do gráfico de serventias (horizontal)
+        const serventiasChart = new Chart(serventiasCtx, {
+            type: 'bar',
+            data: serventiasData,
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Configurações do gráfico de comarcas (vertical)
+        const comarcasChart = new Chart(comarcasCtx, {
+            type: 'bar',
+            data: comarcasData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Função para redirecionar para a página home.html
+        function goHome() {
+            window.location.href = '../caceadm.html';
+        }
+    </script>
+</body>
+</html>

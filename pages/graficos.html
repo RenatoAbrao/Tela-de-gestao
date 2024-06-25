@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/graficos.css">
+    <title>Gráficos</title>
+</head>
+<body>
+    <header>
+     
+        <h1>Página de Gráficos</h1>
+    </header>
+    <nav>
+        <a href="#individualChart">Gráfico Individual</a>
+        <a href="#generalChart">Gráfico Mensal</a>
+       
+            <button onclick="goHome()">Voltar para Home</button>
+    </nav>
+    <div class="container">
+        <div class="chart-container">
+            <h2>Gráfico Individual (Comparação de 40 Pessoas)</h2>
+            <canvas id="individualChart"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <h2>Gráfico Mensal</h2>
+            <canvas id="generalChart"></canvas>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Página de Gráficos. Todos os direitos reservados.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const individualCtx = document.getElementById('individualChart').getContext('2d');
+        const generalCtx = document.getElementById('generalChart').getContext('2d');
+
+        // Dados para o gráfico individual
+        const individualLabels = Array.from({ length: 40 }, (_, i) => `Pessoa ${i + 1}`);
+        const individualData = {
+            labels: individualLabels,
+            datasets: [{
+                label: 'Desempenho Individual',
+                data: Array.from({ length: 40 }, () => Math.floor(Math.random() * 100) + 1),
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Dados para o gráfico geral
+        const generalLabels = ['janeiro', 'fevereiro', 'março', 'abril', 'março' , 
+        'junho' , 'julho' , 'agosto' , 'setembro' , 'outubro' , 'novembro' , 'dezembro'
+        ];
+        const generalData = {
+            labels: generalLabels,
+            datasets: [{
+                label: 'Desempenho Geral',
+                data: [75, 50, 80, 60, 90],
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Configurações do gráfico individual
+        const individualChart = new Chart(individualCtx, {
+            type: 'bar',
+            data: individualData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Configurações do gráfico geral
+        const generalChart = new Chart(generalCtx, {
+            type: 'bar',
+            data: generalData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Função para redirecionar para a página home.html
+        function goHome() {
+            window.location.href = '../caceadm.html';
+        }
+    </script>
+</body>
+</html>
